@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: enhanced-telegram-bot
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node bot.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: BOT_TOKEN
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+    autoDeploy: false
+    region: singapore
+    numInstances: 1
+    disk:
+      name: enhanced-bot-disk
+      mountPath: /opt/render/project/storage
+      sizeGB: 1
